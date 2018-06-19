@@ -30,6 +30,14 @@ MongoClient.connect("mongodb://localhost:27017", function(err, client){
     })
   })
 
+  // INDEX
+app.get("/api/shopping-list", function(req, res, next){
+  const itemsCollection = db.collection("items");
+  itemsCollection.find().toArray(function(err, shoppingList){
+    if (err) next(err)
+    res.json(shoppingList)
+  })
+})
 
   app.listen(3000, function(){
     console.log("Listening on port 3000");
