@@ -39,6 +39,21 @@ app.get("/api/shopping-list", function(req, res, next){
   })
 })
 
+// DELETE
+app.delete("/api/shopping-list", function(req, res, next){
+  const itemsCollection = db.collection("items");
+  itemsCollection.remove({}, function(err, result){
+    if (err) next(err);
+    res.status(200).send();
+  })
+})
+
+
+// UPDATE
+
+
+
+
   app.listen(3000, function(){
     console.log("Listening on port 3000");
   });
