@@ -50,7 +50,15 @@ app.delete("/api/shopping-list", function(req, res, next){
 
 
 // UPDATE
-
+app.post("/api/shopping-list/:id", function(req, res, next){
+  const itemsCollection = db.collection("items");
+  const objectID = ObjectID(req.params.id);
+  itemsCollection.update({_id: objectID}, req.body, function(err, result ){
+    if (err) next(err)
+    res.status(201).send();
+    // res.json(result.ops[0]);
+  })
+})
 
 
 
